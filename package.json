@@ -1,0 +1,23 @@
+{
+  "name": "fundamentals",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "process-cross": "cross-env PORT=5000 NODE_ENV=production node ./lessons/process.js",
+    "process-env": "node ./lessons/process.js",
+    "process-argv": "node ./lessons/process.js firstArg secondArg thirdArg"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^14.2.0"
+  }
+}
