@@ -2,7 +2,6 @@ const fs = require("fs");
 const path = require("path");
 const fsPromise = require("fs/promises"); // Need to check and learn.
 const { resolve } = require("path");
-const { rejects } = require("assert");
 
 // fs.mkdirSync(path.resolve(__dirname, "dir"));
 // fs.rmdirSync(path.resolve(__dirname, "dir"));
@@ -42,52 +41,52 @@ const { rejects } = require("assert");
 
 
 // --------------------------------------------
-const writeFileAsync = async (path, data) => {
-    return new Promise((resolve, reject) => {
-        fs.writeFile(path, data, (err) => {
-            if (err) return reject(err.message);
-            resolve();
-        })
-    })
-}
+// const writeFileAsync = async (path, data) => {
+//     return new Promise((resolve, reject) => {
+//         fs.writeFile(path, data, (err) => {
+//             if (err) return reject(err.message);
+//             resolve();
+//         })
+//     })
+// }
 
-const appendFileAsync = async (path, data) => {
-    return new Promise((resolve, reject) => {
-        fs.appendFile(path, data, (err) => {
-            if (err) return reject(err.message);
-            resolve();
-        })
-    })
-}
+// const appendFileAsync = async (path, data) => {
+//     return new Promise((resolve, reject) => {
+//         fs.appendFile(path, data, (err) => {
+//             if (err) return reject(err.message);
+//             resolve();
+//         })
+//     })
+// }
 
-const readFileAsync = async (path) => {
-    return new Promise((resolve, reject) => {
-        fs.readFile(path, {encoding: "utf-8"}, (err, data) => {
-            if (err) return reject(err.message);
-            resolve(data);
-        })
-    })
-}
+// const readFileAsync = async (path) => {
+//     return new Promise((resolve, reject) => {
+//         fs.readFile(path, {encoding: "utf-8"}, (err, data) => {
+//             if (err) return reject(err.message);
+//             resolve(data);
+//         })
+//     })
+// }
 
-const removeFileAsync = async (path) => {
-    return new Promise((resolve, reject) => {
-        fs.readFile(path, (err) => {
-            if (err) return reject(err.message);
-            resolve();
-        })
-    })
-}
+// const removeFileAsync = async (path) => {
+//     return new Promise((resolve, reject) => {
+//         fs.readFile(path, (err) => {
+//             if (err) return reject(err.message);
+//             resolve();
+//         })
+//     })
+// }
 
 
-writeFileAsync(path.resolve(__dirname, "text.txt"), "First text.")
-    .then(() => appendFileAsync(path.resolve(__dirname, "text.txt"), "\nSecond text."))
-    .then(() => appendFileAsync(path.resolve(__dirname, "text.txt"), "\nThird text."))
-    .then(() => readFileAsync(path.resolve(__dirname, "text.txt")))
-    .then(data => console.log(data))
-    .catch(err => console.log(err));
+// writeFileAsync(path.resolve(__dirname, "text.txt"), "First text.")
+//     .then(() => appendFileAsync(path.resolve(__dirname, "text.txt"), "\nSecond text."))
+//     .then(() => appendFileAsync(path.resolve(__dirname, "text.txt"), "\nThird text."))
+//     .then(() => readFileAsync(path.resolve(__dirname, "text.txt")))
+//     .then(data => console.log(data))
+//     .catch(err => console.log(err));
 
-removeFileAsync(path.resolve(__dirname, "text.txt"))
-    .then(() => console.log("File was removed."))
+// removeFileAsync(path.resolve(__dirname, "text.txt"))
+//     .then(() => console.log("File was removed."))
 // --------------------------------------------
 
 // Задача
