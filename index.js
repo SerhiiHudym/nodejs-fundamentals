@@ -1,29 +1,26 @@
-const http = require("http");
+;// My own http library.
+
 const PORT = process.env.PORT || 8080;
+const Application = require("./framework/Application");
+const userRouter = require("./src/user-router");
+const jsonParser = require("./framework/parseJson");
+const urlParser = require("./framework/parseUrl");
+const mongoose = require("mongoose");
 
-const server = http.createServer((req, res) => {
-    // ==============================================
-    // res.writeHead(200, {
-    //     "Content-type": "text/html; charset=utf-8"
-    // })
-    // res.end("<h1>Hello, World!</h1>");
+const app = new Application();
 
-    // res.end(req.url)
-    // ==============================================
+app.use(jsonParser);
+app.use(urlParser("http://localhost:8080"));
 
+app.addRouter(userRouter);
 
+const start = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URL);
+        app.listen(PORT, () => { console.log("Server started on PORT: " + PORT + "."); });
+    } catch (err) {
+        console.log(err);
+    }
+}
 
-    // ==============================================
-    // Стрим по умолчанию работает с буфером и со строкой
-
-    // res.writeHead(200, {
-    //     "Content-type": "application/json"
-    // })
-    // if (req.url === "/users") return res.end(JSON.stringify([{id: 1, name: "Serhii", surname: "Hudym", job: "developer"}]));
-    // if (req.url === "/posts") return res.end("POSTS");
-    // ==============================================
-});
-
-server.listen(PORT, () => {
-    console.log("Server started on PORT: " + PORT + ".");
-});
+start();
